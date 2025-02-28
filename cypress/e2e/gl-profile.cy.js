@@ -8,18 +8,17 @@ describe ('Should redirect to profile page', () => {
         //cy.get('[data-cy="alert"]').should('not.exist') 
         cy.get('[data-cy="email"]').type('sebzh29@outlook.com') 
         cy.get('[data-cy="password"]').type('azerty29')
-        cy.get('[data-cy="signin-button"]').click()
-       
+        cy.get('[data-cy="signin-button"]').click()       
 
-        // verifier la présence de l'element profil dans la page 
-        cy.contains('Profil').click()
-        
+        // reload de page 
+        cy.contains('GraineLink').should('be.visible')
+        cy.get('[data-cy="home-link"]').click()      
 
-        //cy.url().should('include', '/profile')
-        
-       
-
-        //cy.url().should('include', '/profile') 
+        // verifier la présence de l'element profil dans la page
+        cy.get('[data-cy="avatar-link"]').should('be.visible')
+        cy.get('[data-cy="avatar-link"]').click()
+        cy.get('[data-cy="profile-link"]').should('be.visible')
+        cy.get('[data-cy="profile-link"]').click() 
     })
 })
 

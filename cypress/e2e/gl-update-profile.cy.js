@@ -19,9 +19,16 @@ beforeEach(() => {
     win.sessionStorage.setItem('accessToken', token);
   });
 
-  cy.visit('/profile');
-  cy.contains('Profil').should('be.visible');
-  //cy.get('[data-cy="edit-profile-button"]').click();  
+  cy.visit('/');
+  // reload de page 
+  cy.contains('GraineLink').should('be.visible')
+  cy.get('[data-cy="home-link"]').click()      
+    
+  // verifier la présence de l'element profil dans la page
+  cy.get('[data-cy="avatar-link"]').should('be.visible')
+  cy.get('[data-cy="avatar-link"]').click()
+  cy.get('[data-cy="profile-link"]').should('be.visible')
+  cy.get('[data-cy="profile-link"]').click()
 });
 
 it('Should update lastname', () => {
